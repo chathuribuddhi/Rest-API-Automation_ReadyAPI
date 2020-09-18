@@ -301,7 +301,6 @@ count(//ns1:Response[1]/ns1:data[1]/ns1:e)</path>
           </con:dataSource>
           <con:shared>true</con:shared>
           <con:restartShared>true</con:restartShared>
-          <con:property>Form editor is not applicable for this request</con:property>
           <con:property>name</con:property>
           <con:property>job</con:property>
           <con:restartOnRun>true</con:restartOnRun>
@@ -372,6 +371,71 @@ count(//ns1:Response[1]/ns1:data[1]/ns1:e)</path>
           </con:entry>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer to Data Sink" id="7a8db352-37cb-4895-9ad5-44e3dfdf55dd">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>id</con:name>
+            <con:sourceType>ResponseAsXml</con:sourceType>
+            <con:sourceStep>Create User</con:sourceStep>
+            <con:sourcePath>declare namespace ns1='https://reqres.in/api/users';
+//ns1:Response[1]/ns1:id[1]</con:sourcePath>
+            <con:targetType>Id</con:targetType>
+            <con:targetStep>DataSink</con:targetStep>
+            <con:targetPath/>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>name</con:name>
+            <con:sourceType>ResponseAsXml</con:sourceType>
+            <con:sourceStep>Create User</con:sourceStep>
+            <con:sourcePath>declare namespace ns1='https://reqres.in/api/users';
+//ns1:Response[1]/ns1:name[1]</con:sourcePath>
+            <con:targetType>Name</con:targetType>
+            <con:targetStep>DataSink</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>Job</con:name>
+            <con:sourceType>ResponseAsXml</con:sourceType>
+            <con:sourceStep>Create User</con:sourceStep>
+            <con:sourcePath>declare namespace ns1='https://reqres.in/api/users';
+//ns1:Response[1]/ns1:job[1]</con:sourcePath>
+            <con:targetType>Job</con:targetType>
+            <con:targetStep>DataSink</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasink" name="DataSink" id="2b84ebb1-b9d9-4788-9454-25d8fea4f503">
+        <con:settings/>
+        <con:config xsi:type="con:DataSinkStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSink type="Excel">
+            <con:configuration>
+              <file/>
+              <outfile>C:/Users/Chathuri/Desktop/New folder/Rest-API-Automation_ReadyAPI/All Users.xlsx</outfile>
+              <worksheet>Sheet1</worksheet>
+              <cell>A1</cell>
+              <evaluateFormulas>false</evaluateFormulas>
+              <append>true</append>
+            </con:configuration>
+          </con:dataSink>
+          <con:properties>
+            <con:property>
+              <con:name>Id</con:name>
+              <con:value>865</con:value>
+            </con:property>
+            <con:property>
+              <con:name>Name</con:name>
+              <con:value>gunapala</con:value>
+            </con:property>
+            <con:property>
+              <con:name>Job</con:name>
+              <con:value>Doctor</con:value>
+            </con:property>
+          </con:properties>
+        </con:config>
+      </con:testStep>
       <con:testStep type="datasourceloop" name="DataSource Loop" id="853ba413-540a-4f76-b3cd-c0c40b95bbd7">
         <con:settings/>
         <con:config>
@@ -389,6 +453,16 @@ count(//ns1:Response[1]/ns1:data[1]/ns1:e)</path>
       </con:breakPoints>
       <con:breakPoints>
         <con:testStepId>a1d2df85-de65-4d41-a2f8-0975c6ab6d72</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>7a8db352-37cb-4895-9ad5-44e3dfdf55dd</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>2b84ebb1-b9d9-4788-9454-25d8fea4f503</con:testStepId>
         <con:status>NONE</con:status>
         <con:properties/>
       </con:breakPoints>
